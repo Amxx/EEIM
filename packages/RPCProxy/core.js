@@ -4,13 +4,14 @@ const express              = require('express')
 const { ethers }           = require('ethers')
 const { success, failure } = require('./utils/format')
 const NFWalletSigner       = require('./signers/nfwalletsigner')
-const RPCSigner            = require('./signers/rpcsigner')
+const RPCWrapper           = require('./signers/rpcwrapper')
 const CONFIG               = require('./config')
 
-
+// TODO customize based on config
 const fallback = new ethers.providers.InfuraProvider('goerli')
 
-const rpc = new RPCSigner(
+const rpc = new RPCWrapper(
+	// TODO add GSN/better relaying support
 	new NFWalletSigner(
 		fallback,
 		CONFIG.relayer,
@@ -27,7 +28,6 @@ const port = CONFIG.port || 8545
 
 // Setup app
 app.use(express.json())
-app.use(express.urlencoded())
 
 // main endpoint
 app
