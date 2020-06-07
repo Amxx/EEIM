@@ -1,31 +1,17 @@
 'use strict'
 
 const express              = require('express')
-const { ethers }           = require('ethers')
+const RPCWrapper           = require('./utils/rpcwrapper')
 const { success, failure } = require('./utils/format')
-const NFWalletSigner       = require('./signers/nfwallet')
-const GSNSigner            = require('./signers/gsn')
-const RPCWrapper           = require('./signers/rpcwrapper')
-const CONFIG               = require('./config')
+const signer               = require('./config')
 
-// TODO customize based on config
-const fallback = new ethers.providers.InfuraProvider('goerli')
-
-const rpc = new RPCWrapper(
-	new NFWalletSigner(
-		new GSNSigner(
-			new ethers.Wallet(CONFIG.signer,  fallback),
-			new ethers.Wallet(CONFIG.relayer, fallback),
-		),
-		CONFIG.proxy,
-	)
-)
+const rpc = new RPCWrapper(signer)
 
 /*****************************************************************************
  *                                 Endpoint                                  *
  *****************************************************************************/
 const app  = express()
-const port = CONFIG.port || 8545
+const port = process.env.RPCPORT || 8545
 
 // Setup app
 app.use(express.json())
@@ -68,7 +54,7 @@ app
 				break
 
 			default:
-				fallback.send(req.body.method, req.body.params)
+				rpc.provider.send(req.body.method, req.body.params)
 				.then(success(req,res))
 				.catch(failure(req,res))
 				break
