@@ -11,14 +11,16 @@ const CONFIG               = require('./config')
 const fallback = new ethers.providers.InfuraProvider('goerli')
 
 const rpc = new RPCWrapper(
-	// TODO add GSN/better relaying support
+	// Ethers signer
+	// new ethers.Wallet(CONFIG.relayer, fallback)
+
+	// Custom signer
 	new NFWalletSigner(
 		fallback,
 		CONFIG.relayer,
 		CONFIG.signer,
 		CONFIG.proxy,
 	)
-	// new ethers.Wallet(CONFIG.relayer, fallback)
 )
 
 /*****************************************************************************
