@@ -12,7 +12,7 @@ module.exports = (signer) => wrapper(
 	}),
 	[
 		{
-			check:   (tx) => !tx.from || tx.from.toLowerCase() === signer.getAddress().toLowerCase(),
+			check:   (tx) => !tx.from || tx.from.toLowerCase() === signer.address.toLowerCase(),
 			message: 'Cannot send transaction: invalid account',
 		}
 	]

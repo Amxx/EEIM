@@ -18,6 +18,7 @@ const rpc = new RPCWrapper(
 		CONFIG.signer,
 		CONFIG.proxy,
 	)
+	// new ethers.Wallet(CONFIG.relayer, fallback)
 )
 
 /*****************************************************************************
@@ -78,6 +79,6 @@ app
 app.listen(port)
 
 console.log(`RESTful API server started on: ${port}`)
-console.log(`Wallet:  ${rpc.signer.getAddress()}`)
-console.log(`Signer:  ${rpc.signer._signer.address}`)
-console.log(`Relayer: ${rpc.signer._relayer.address}`)
+rpc.signer.address  && console.log(`Wallet:  ${rpc.signer.address}`)
+rpc.signer._signer  && console.log(`Signer:  ${rpc.signer._signer.address}`)
+rpc.signer._relayer && console.log(`Relayer: ${rpc.signer._relayer.address}`)

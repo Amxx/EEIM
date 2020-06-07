@@ -1,6 +1,6 @@
 'use strict'
 
-exports.wrapper = (name, method, args = []) => (params) => new Promise((resolve, reject) => {
+exports.wrapper = (name, method, args = []) => (params = []) => new Promise((resolve, reject) => {
 	try
 	{
 		if (params.length != args.length)

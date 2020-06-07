@@ -8,7 +8,7 @@ module.exports = (signer) => wrapper(
 	(params) => signer.signMessage(ethers.utils.toUtf8String(params[1])),
 	[
 		{
-			check:   (addr) => addr.toLowerCase() === signer.getAddress().toLowerCase(),
+			check:   (addr) => addr.toLowerCase() === signer.address.toLowerCase(),
 			message: 'Cannot sign message: invalid account',
 		},
 		{

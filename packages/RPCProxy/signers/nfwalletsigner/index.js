@@ -22,11 +22,12 @@ class NFWalletSigner extends ethers.Signer
 		this._relayer = new ethers.Wallet(relayer, provider)
 		this._signer  = new ethers.Wallet(signer,  provider)
 		this._proxy   = new ethers.Contract(proxy, NFWALLET.abi, this._relayer)
+		this.address  = this._proxy.address
 	}
 
 	getAddress()
 	{
-		return this._proxy.address
+		return new Promise((resolve, reject) => resolve(this._proxy.address))
 	}
 
 	signMessage(message)
