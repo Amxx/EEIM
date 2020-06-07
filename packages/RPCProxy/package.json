@@ -5,7 +5,7 @@
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "homepage": "https://github.com/Amxx/EEIM#readme",
   "license": "MIT",
-  "main": "lib/core.js",
+  "main": "daemon.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Amxx/EEIM.git"
@@ -14,7 +14,7 @@
     "url": "https://github.com/Amxx/EEIM/issues"
   },
   "scripts": {
-    "start": "node lib/core.js"
+    "start": "node daemon.js"
   },
   "dependencies": {
     "ethers": "^4.0.47",
