@@ -27,7 +27,6 @@ test \
 	'eth_sign' \
 	'["0x7bd4783FDCAD405A28052a0d1f11236A741da593","0x68656c6c6f"]' # Hello
 
-
 test \
 	'eth_sendTransaction' \
 	'[{

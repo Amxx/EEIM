@@ -3,7 +3,8 @@
 const express              = require('express')
 const { ethers }           = require('ethers')
 const { success, failure } = require('./utils/format')
-const NFWalletSigner       = require('./signers/nfwalletsigner')
+const NFWalletSigner       = require('./signers/nfwallet')
+const GSNSigner            = require('./signers/gsn')
 const RPCWrapper           = require('./signers/rpcwrapper')
 const CONFIG               = require('./config')
 
@@ -11,14 +12,11 @@ const CONFIG               = require('./config')
 const fallback = new ethers.providers.InfuraProvider('goerli')
 
 const rpc = new RPCWrapper(
-	// Ethers signer
-	// new ethers.Wallet(CONFIG.relayer, fallback)
-
-	// Custom signer
 	new NFWalletSigner(
-		fallback,
-		CONFIG.relayer,
-		CONFIG.signer,
+		new GSNSigner(
+			new ethers.Wallet(CONFIG.signer,  fallback),
+			new ethers.Wallet(CONFIG.relayer, fallback),
+		),
 		CONFIG.proxy,
 	)
 )
