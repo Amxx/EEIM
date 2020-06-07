@@ -1,0 +1,33 @@
+{
+	"private": true,
+	"name": "eeim",
+	"version": "0.0.1",
+	"author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Amxx/EEIM.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Amxx/EEIM.git/issues"
+	},
+	"scripts": {
+		"build": "yarn wsrun --stages --fast-exit --report build --exclude-missing build",
+		"test": "yarn wsrun --serial --fast-exit --report test --exclude-missing test",
+		"clean": "yarn wsrun --report clean --exclude-missing clean"
+	},
+	"engines": {
+		"node": ">=10.9",
+		"yarn": ">=1.9.4"
+	},
+	"dependencies": {
+		"npm-check": "^5.9.0",
+		"wsrun": "^5.2.0"
+	},
+	"devDependencies": {
+		"chalk": "^3.0.0"
+	}
+}

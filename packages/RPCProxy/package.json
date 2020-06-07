@@ -1,0 +1,23 @@
+{
+  "name": "@eeim/rpcproxy",
+  "version": "0.0.1",
+  "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
+  "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
+  "homepage": "https://github.com/Amxx/EEIM#readme",
+  "license": "MIT",
+  "main": "lib/core.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amxx/EEIM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amxx/EEIM/issues"
+  },
+  "scripts": {
+    "start": "node lib/core.js"
+  },
+  "dependencies": {
+    "ethers": "^4.0.47",
+    "express": "^4.17.1"
+  }
+}
