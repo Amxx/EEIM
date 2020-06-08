@@ -1,0 +1,24 @@
+{
+  "name": "@eeim/forwarders",
+  "version": "0.0.1",
+  "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
+  "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
+  "homepage": "https://github.com/Amxx/EEIM#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amxx/EEIM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amxx/EEIM/issues"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.0.35",
+    "truffle": "^5.1.29"
+  },
+  "dependencies": {
+    "@iexec/solidity": "^0.1.0",
+    "@openzeppelin/contracts": "^3.0.1"
+  }
+}
