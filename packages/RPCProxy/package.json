@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "daemon.js",
   "files": [
-    "/lib"
+    "/lib",
     "/daemon.js"
   ],
   "repository": {
@@ -21,6 +21,7 @@
     "start": "node daemon.js"
   },
   "dependencies": {
+    "eth-sig-util": "^2.5.3",
     "ethers": "^4.0.47",
     "express": "^4.17.1"
   }

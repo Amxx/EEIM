@@ -2,6 +2,7 @@
 
 module.exports = {
 	accounts:        require('./accounts'),
-	signMessage:     require('./signMessage'),
+	sign:            require('./sign'),
+	signTypedData:   require('./signTypedData'),
 	sendTransaction: require('./sendTransaction'),
 }

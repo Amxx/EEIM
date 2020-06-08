@@ -9,12 +9,12 @@ class NFWalletSigner extends ethers.Signer
 	// _owner:   types.wallet
 	// _proxy:   types.contract
 
-	constructor(owner, proxy)
+	constructor(proxy, owner)
 	{
 		super()
 		this.provider = owner.provider
 		this.address  = proxy // resolve ?
-		this._owner   = owner
+		this._owner  = owner
 		this._proxy   = new ethers.Contract(proxy, NFWALLET.abi, owner)
 	}
 
@@ -26,6 +26,11 @@ class NFWalletSigner extends ethers.Signer
 	signMessage(message)
 	{
 		return this._owner.signMessage(message)
+	}
+
+	signTypedData(data)
+	{
+		return this._owner.signTypedData(data)
 	}
 
 	sendTransaction(tx)

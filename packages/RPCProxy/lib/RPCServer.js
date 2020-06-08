@@ -20,8 +20,7 @@ class RPCServer
 					break
 
 				case 'eth_sign':
-				case 'eth_signMessage':
-					rpc.signMessage(signer)(req.body.params)
+					rpc.sign(signer)(req.body.params)
 					.then(success(req,res))
 					.catch(failure(req,res))
 					break
@@ -29,7 +28,9 @@ class RPCServer
 				case 'eth_signTypedData':
 				case 'eth_signTypedData_v3':
 				case 'eth_signTypedData_v4':
-					failure(req,res)({ message: 'not implemented yet' })
+					rpc.signTypedData(signer)(req.body.params)
+					.then(success(req,res))
+					.catch(failure(req,res))
 					break
 
 				case 'eth_sendTransaction':

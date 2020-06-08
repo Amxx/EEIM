@@ -12,7 +12,7 @@ class SimpleForwarder extends ethers.Signer
 	constructor(signer, relayer)
 	{
 		super()
-		this.provider   = signer.provider
+		this.provider   = relayer.provider
 		this.address    = signer.address
 		this._signer    = signer
 		this._relayer   = relayer
@@ -32,6 +32,11 @@ class SimpleForwarder extends ethers.Signer
 	signMessage(message)
 	{
 		return this._signer.signMessage(message)
+	}
+
+	signTypedData(data)
+	{
+		return this._signer.signTypedData(data)
 	}
 
 	sendTransaction(tx)
