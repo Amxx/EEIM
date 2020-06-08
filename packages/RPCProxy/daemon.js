@@ -31,4 +31,4 @@ const signer =new signers.nfwallet(
 	'0x2c3723b6813f3b9c8eafb28e68ca12504fada0c1',
 );
 
-(new rpcserver(signer)).start(process.env.PORT || 8546)
+(new rpcserver(signer)).start(process.env.PORT || 8545)

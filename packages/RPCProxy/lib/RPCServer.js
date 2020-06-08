@@ -45,13 +45,13 @@ class RPCServer
 					break
 			}
 		})
-		console.log(`Configured signer ${signer.address}`)
+		console.info(`Using signer for address ${signer.address}`)
 	}
 
 	start(port = 8545)
 	{
 		this.app.listen(port)
-		console.log(`RESTful API server started on: ${port}`)
+		console.info(`RESTful API server started on: ${port}`)
 	}
 }
 

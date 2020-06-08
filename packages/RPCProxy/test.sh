@@ -9,7 +9,7 @@ function test()
 	done
 }
 
-ENDPOINTS='127.0.0.1:8546'
+ENDPOINTS='127.0.0.1:8545'
 
 test \
 	'eth_blockNumber' \
@@ -19,21 +19,21 @@ test \
 	'eth_accounts' \
 	'[]'
 
-test \
-	'eth_sign' \
-	'["0x2c3723b6813f3b9c8eafb28e68ca12504fada0c1","0x68656c6c6f"]' # Hello
+# test \
+# 	'eth_sign' \
+# 	'["0x2c3723b6813f3b9c8eafb28e68ca12504fada0c1","0x68656c6c6f"]' # Hello
 
 # test \
 # 	'eth_sign' \
 # 	'["0x7bd4783FDCAD405A28052a0d1f11236A741da593","0x68656c6c6f"]' # Hello
 
-test \
-	'eth_sendTransaction' \
-	'[{
-		"from": "0x2c3723b6813f3b9c8eafb28e68ca12504fada0c1",
-		"to": "0xF037353a9B47f453d89E9163F21a2f6e1000B07d",
-		"value": "0x0"
-	}]'
+# test \
+# 	'eth_sendTransaction' \
+# 	'[{
+# 		"from": "0x2c3723b6813f3b9c8eafb28e68ca12504fada0c1",
+# 		"to": "0xF037353a9B47f453d89E9163F21a2f6e1000B07d",
+# 		"value": "0x016345785d8a0000"
+# 	}]'
 
 # test \
 # 	'eth_sendTransaction' \
