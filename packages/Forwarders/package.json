@@ -5,6 +5,10 @@
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "homepage": "https://github.com/Amxx/EEIM#readme",
   "license": "MIT",
+  "files": [
+    "/build",
+    "/contracts"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Amxx/EEIM.git"
@@ -15,7 +19,8 @@
   "scripts": {},
   "devDependencies": {
     "@truffle/hdwallet-provider": "^1.0.35",
-    "truffle": "^5.1.29"
+    "truffle": "^5.1.29",
+    "truffle-plugin-verify": "^0.3.11"
   },
   "dependencies": {
     "@iexec/solidity": "^0.1.0",

@@ -6,6 +6,10 @@
   "homepage": "https://github.com/Amxx/EEIM#readme",
   "license": "MIT",
   "main": "daemon.js",
+  "files": [
+    "/lib"
+    "/daemon.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Amxx/EEIM.git"

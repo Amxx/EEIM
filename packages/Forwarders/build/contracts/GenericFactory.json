@@ -3642,7 +3642,64 @@
     "version": "0.6.8+commit.0bbfe453.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x387ea218537e939551af33bbc2dd6c53b1fee55d377a0dce288258f972cb3a9c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            }
+          ],
+          "name": "NewContract",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfAC000a12dA42B871c0AaD5F25391aAe62958Db1"
+    },
+    "4": {
+      "events": {
+        "0x387ea218537e939551af33bbc2dd6c53b1fee55d377a0dce288258f972cb3a9c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            }
+          ],
+          "name": "NewContract",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfAC000a12dA42B871c0AaD5F25391aAe62958Db1"
+    },
     "5": {
+      "events": {
+        "0x387ea218537e939551af33bbc2dd6c53b1fee55d377a0dce288258f972cb3a9c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            }
+          ],
+          "name": "NewContract",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfAC000a12dA42B871c0AaD5F25391aAe62958Db1"
+    },
+    "42": {
       "events": {
         "0x387ea218537e939551af33bbc2dd6c53b1fee55d377a0dce288258f972cb3a9c": {
           "anonymous": false,
@@ -3663,7 +3720,7 @@
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-08T12:14:55.574Z",
+  "updatedAt": "2020-06-08T14:05:28.604Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
