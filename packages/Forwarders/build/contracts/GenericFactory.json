@@ -3660,29 +3660,10 @@
       },
       "links": {},
       "address": "0xfAC000a12dA42B871c0AaD5F25391aAe62958Db1"
-    },
-    "1591608609598": {
-      "events": {
-        "0x387ea218537e939551af33bbc2dd6c53b1fee55d377a0dce288258f972cb3a9c": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "addr",
-              "type": "address"
-            }
-          ],
-          "name": "NewContract",
-          "type": "event"
-        }
-      },
-      "links": {},
-      "address": "0xfAC000a12dA42B871c0AaD5F25391aAe62958Db1"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-08T09:36:53.115Z",
+  "updatedAt": "2020-06-08T12:14:55.574Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

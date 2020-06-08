@@ -8,26 +8,36 @@ contract SimpleForwarder
 
 	mapping(address => uint256) public nonces;
 
-	function relayRequest(
-		address        target,
+	function verifyAndRelay(
+		address        to,
 		bytes calldata data,
 		uint256        nonce,
 		bytes calldata sign)
 	external
 	{
-		address sender = hash(target, data, nonce).toEthSignedMessageHash().recover(sign);
+		address sender = verify(to, data, nonce, sign);
 		require(nonces[sender]++ == nonce, "invalid-nonce");
-		(bool success, bytes memory returndata) = target.call(abi.encodePacked(data, sender));
+		(bool success, bytes memory returndata) = to.call(abi.encodePacked(data, sender));
 		require(success, string(returndata));
 	}
 
-	function hash(address target, bytes calldata data, uint256 nonce)
-	public returns (bytes32)
+	function verify(
+		address        to,
+		bytes calldata data,
+		uint256        nonce,
+		bytes calldata sign)
+	public view returns (address)
+	{
+		return hash(to, data, nonce).toEthSignedMessageHash().recover(sign);
+	}
+
+	function hash(address to, bytes calldata data, uint256 nonce)
+	public view returns (bytes32)
 	{
 		return keccak256(abi.encodePacked(
 			address(this),
 			chainId(),
-			target,
+			to,
 			data,
 			nonce
 		));

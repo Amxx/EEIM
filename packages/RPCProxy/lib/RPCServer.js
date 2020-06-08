@@ -38,12 +38,6 @@ class RPCServer
 					.catch(failure(req,res))
 					break
 
-				case 'eth_sendRawTransaction':
-					rpc.sendRawTransaction(signer)(req.body.params)
-					.then(success(req,res))
-					.catch(failure(req,res))
-					break
-
 				default:
 					signer.provider.send(req.body.method, req.body.params)
 					.then(success(req,res))
@@ -51,6 +45,7 @@ class RPCServer
 					break
 			}
 		})
+		console.log(`Configured signer ${signer.address}`)
 	}
 
 	start(port = 8545)
