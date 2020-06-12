@@ -9,7 +9,7 @@ function test()
 	done
 }
 
-ENDPOINTS='127.0.0.1:8545'
+ENDPOINTS='127.0.0.1:8546'
 
 test \
 	'eth_blockNumber' \

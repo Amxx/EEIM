@@ -1,7 +1,7 @@
 'use strict'
 
 const { ethers } = require('ethers')
-const FORWARDER  = require('./abi/SimpleForwarder.json')
+const FORWARDER  = require('@eeim/administered-wallets/build/contracts/SimpleForwarder.json')
 
 class SimpleForwarder extends ethers.Signer
 {
@@ -9,19 +9,24 @@ class SimpleForwarder extends ethers.Signer
 	// _signer:  types.wallet
 	// _relayer: types.wallet
 
-	constructor(signer, relayer)
+	constructor(signer, relayer, forwarder = null)
 	{
 		super()
 		this.provider   = relayer.provider
 		this.address    = signer.address
 		this._signer    = signer
 		this._relayer   = relayer
+		this._forwarder = { address: forwarder }
+	}
+
+	async initialize()
+	{
 		this._forwarder = new ethers.Contract(
-			// FORWARDER.networks[this.provider._network.chainId].address,
-			'0xE8AB70C0bFF15D2286a8953641803224A66Eb09E',
+			this._forwarder.address || FORWARDER.networks[await this.provider.send('eth_chainId')].address,
 			FORWARDER.abi,
-			relayer
+			this._relayer
 		)
+		return this;
 	}
 
 	getAddress()

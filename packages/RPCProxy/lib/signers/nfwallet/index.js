@@ -1,7 +1,7 @@
 'use strict'
 
 const { ethers } = require('ethers')
-const NFWALLET   = require('./abi/NFWallet.json')
+const NFWALLET   = require('@eeim/administered-wallets/build/contracts/AdministeredWallet.json')
 
 class NFWalletSigner extends ethers.Signer
 {
@@ -14,8 +14,14 @@ class NFWalletSigner extends ethers.Signer
 		super()
 		this.provider = owner.provider
 		this.address  = proxy // resolve ?
-		this._owner  = owner
+		this._owner   = owner
 		this._proxy   = new ethers.Contract(proxy, NFWALLET.abi, owner)
+	}
+
+	async initialize()
+	{
+		await this._owner.initialize();
+		return this;
 	}
 
 	getAddress()
