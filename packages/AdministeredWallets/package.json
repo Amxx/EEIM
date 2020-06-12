@@ -1,0 +1,31 @@
+{
+  "name": "@eeim/administered-wallets",
+  "version": "0.0.1",
+  "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
+  "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
+  "homepage": "https://github.com/Amxx/EEIM#readme",
+  "license": "MIT",
+  "files": [
+    "/build",
+    "/contracts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amxx/EEIM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amxx/EEIM/issues"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.0.35",
+    "solidity-coverage": "^0.7.5",
+    "truffle": "^5.1.29",
+    "truffle-plugin-verify": "^0.3.11"
+  },
+  "dependencies": {
+    "@iexec/solidity": "^0.1.0",
+    "@opengsn/gsn": "^0.10.0",
+    "@openzeppelin/contracts": "^3.0.1"
+  }
+}
