@@ -18,9 +18,9 @@ class NFWalletSigner extends ethers.Signer
 		this._proxy   = new ethers.Contract(proxy, NFWALLET.abi, owner)
 	}
 
-	async initialize()
+	async connect()
 	{
-		await this._owner.initialize();
+		await this._owner.connect();
 		return this;
 	}
 

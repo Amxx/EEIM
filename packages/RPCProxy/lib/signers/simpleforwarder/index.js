@@ -19,7 +19,7 @@ class SimpleForwarder extends ethers.Signer
 		this._forwarder = { address: forwarder }
 	}
 
-	async initialize()
+	async connect()
 	{
 		this._forwarder = new ethers.Contract(
 			this._forwarder.address || FORWARDER.networks[await this.provider.send('eth_chainId')].address,
@@ -74,7 +74,7 @@ class SimpleForwarder extends ethers.Signer
 				tx.data,
 				this._forwarder.nonces(this.address),
 				this._forwarder.chainId(),
-				this._forwarder.addressPromise,
+				this._forwarder.resolvedAddress,
 			])
 			.then(([ to, data, nonce, chainId, forwarder ]) => resolve({
 					to:        to,

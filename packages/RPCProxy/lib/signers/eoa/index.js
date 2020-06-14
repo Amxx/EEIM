@@ -10,14 +10,14 @@ class EOASigner extends ethers.Wallet
 		super(...args)
 	}
 
-	async initialize()
+	async connect()
 	{
 		return this;
 	}
 
 	signTypedData(data)
 	{
-		return new Promise((resolve, reject) => resolve(sigUtil.signTypedData(Buffer.from(this.signingKey.privateKey.substring(2), 'hex'), { data })))
+		return new Promise((resolve, reject) => resolve(sigUtil.signTypedData(Buffer.from(this._signingKey().privateKey.substring(2), 'hex'), { data })))
 	}
 }
 
