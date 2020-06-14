@@ -549,7 +549,7 @@
         "id": 676,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 2181,
+        "sourceUnit": 2347,
         "src": "25:52:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -560,7 +560,7 @@
         "id": 677,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 3394,
+        "sourceUnit": 3658,
         "src": "78:57:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -571,7 +571,7 @@
         "id": 678,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 3780,
+        "sourceUnit": 4044,
         "src": "136:51:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -597,10 +597,10 @@
               "id": 680,
               "name": "ERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3393,
+              "referencedDeclaration": 3657,
               "src": "279:6:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC721_$3393",
+                "typeIdentifier": "t_contract$_ERC721_$3657",
                 "typeString": "contract ERC721"
               }
             },
@@ -615,10 +615,10 @@
               "id": 682,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2180,
+              "referencedDeclaration": 2346,
               "src": "287:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2180",
+                "typeIdentifier": "t_contract$_Ownable_$2346",
                 "typeString": "contract Ownable"
               }
             },
@@ -629,14 +629,14 @@
         ],
         "contractDependencies": [
           673,
-          2071,
-          2180,
           2237,
-          2249,
-          3393,
-          3509,
-          3540,
-          3567
+          2346,
+          2501,
+          2513,
+          3657,
+          3773,
+          3804,
+          3831
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -644,14 +644,14 @@
         "id": 799,
         "linearizedBaseContracts": [
           799,
-          2180,
-          3393,
-          3540,
-          3567,
-          3509,
-          2237,
-          2249,
-          2071
+          2346,
+          3657,
+          3804,
+          3831,
+          3773,
+          2501,
+          2513,
+          2237
         ],
         "name": "CounterfactualTokenRegistry",
         "nodeType": "ContractDefinition",
@@ -1021,10 +1021,10 @@
                   "name": "ERC721",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3393,
+                  "referencedDeclaration": 3657,
                   "src": "462:6:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC721_$3393_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC721_$3657_$",
                     "typeString": "type(contract ERC721)"
                   }
                 },
@@ -1357,10 +1357,10 @@
                         "name": "Create2",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3779,
+                        "referencedDeclaration": 4043,
                         "src": "770:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Create2_$3779_$",
+                          "typeIdentifier": "t_type$_t_contract$_Create2_$4043_$",
                           "typeString": "type(library Create2)"
                         }
                       },
@@ -1371,7 +1371,7 @@
                       "lValueRequested": false,
                       "memberName": "deploy",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3720,
+                      "referencedDeclaration": 3984,
                       "src": "770:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -1544,7 +1544,7 @@
                       "lValueRequested": false,
                       "memberName": "initialize",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1304,
+                      "referencedDeclaration": 1470,
                       "src": "868:51:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$",
@@ -1664,7 +1664,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3111,
+                      "referencedDeclaration": 3375,
                       "src": "968:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -2068,10 +2068,10 @@
                         "name": "Create2",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3779,
+                        "referencedDeclaration": 4043,
                         "src": "1141:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Create2_$3779_$",
+                          "typeIdentifier": "t_type$_t_contract$_Create2_$4043_$",
                           "typeString": "type(library Create2)"
                         }
                       },
@@ -2082,7 +2082,7 @@
                       "lValueRequested": false,
                       "memberName": "computeAddress",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3740,
+                      "referencedDeclaration": 4004,
                       "src": "1141:22:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
@@ -2324,7 +2324,7 @@
         "id": 676,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 2181,
+        "sourceUnit": 2347,
         "src": "25:52:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2335,7 +2335,7 @@
         "id": 677,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 3394,
+        "sourceUnit": 3658,
         "src": "78:57:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2346,7 +2346,7 @@
         "id": 678,
         "nodeType": "ImportDirective",
         "scope": 800,
-        "sourceUnit": 3780,
+        "sourceUnit": 4044,
         "src": "136:51:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2372,10 +2372,10 @@
               "id": 680,
               "name": "ERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3393,
+              "referencedDeclaration": 3657,
               "src": "279:6:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC721_$3393",
+                "typeIdentifier": "t_contract$_ERC721_$3657",
                 "typeString": "contract ERC721"
               }
             },
@@ -2390,10 +2390,10 @@
               "id": 682,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2180,
+              "referencedDeclaration": 2346,
               "src": "287:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2180",
+                "typeIdentifier": "t_contract$_Ownable_$2346",
                 "typeString": "contract Ownable"
               }
             },
@@ -2404,14 +2404,14 @@
         ],
         "contractDependencies": [
           673,
-          2071,
-          2180,
           2237,
-          2249,
-          3393,
-          3509,
-          3540,
-          3567
+          2346,
+          2501,
+          2513,
+          3657,
+          3773,
+          3804,
+          3831
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -2419,14 +2419,14 @@
         "id": 799,
         "linearizedBaseContracts": [
           799,
-          2180,
-          3393,
-          3540,
-          3567,
-          3509,
-          2237,
-          2249,
-          2071
+          2346,
+          3657,
+          3804,
+          3831,
+          3773,
+          2501,
+          2513,
+          2237
         ],
         "name": "CounterfactualTokenRegistry",
         "nodeType": "ContractDefinition",
@@ -2796,10 +2796,10 @@
                   "name": "ERC721",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3393,
+                  "referencedDeclaration": 3657,
                   "src": "462:6:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC721_$3393_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC721_$3657_$",
                     "typeString": "type(contract ERC721)"
                   }
                 },
@@ -3132,10 +3132,10 @@
                         "name": "Create2",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3779,
+                        "referencedDeclaration": 4043,
                         "src": "770:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Create2_$3779_$",
+                          "typeIdentifier": "t_type$_t_contract$_Create2_$4043_$",
                           "typeString": "type(library Create2)"
                         }
                       },
@@ -3146,7 +3146,7 @@
                       "lValueRequested": false,
                       "memberName": "deploy",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3720,
+                      "referencedDeclaration": 3984,
                       "src": "770:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$",
@@ -3319,7 +3319,7 @@
                       "lValueRequested": false,
                       "memberName": "initialize",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1304,
+                      "referencedDeclaration": 1470,
                       "src": "868:51:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_payable$_t_address_$_t_bytes_memory_ptr_$returns$__$",
@@ -3439,7 +3439,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3111,
+                      "referencedDeclaration": 3375,
                       "src": "968:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -3843,10 +3843,10 @@
                         "name": "Create2",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3779,
+                        "referencedDeclaration": 4043,
                         "src": "1141:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Create2_$3779_$",
+                          "typeIdentifier": "t_type$_t_contract$_Create2_$4043_$",
                           "typeString": "type(library Create2)"
                         }
                       },
@@ -3857,7 +3857,7 @@
                       "lValueRequested": false,
                       "memberName": "computeAddress",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3740,
+                      "referencedDeclaration": 4004,
                       "src": "1141:22:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
@@ -4077,7 +4077,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-12T13:16:56.600Z",
+  "updatedAt": "2020-06-14T17:25:30.286Z",
   "devdoc": {
     "methods": {
       "approve(address,uint256)": {
