@@ -1,0 +1,73 @@
+version: '3'
+services:
+
+  eeim:
+    build:
+      context: .
+      dockerfile: Dockerfile/RPCProxy
+
+  ganache:
+    image: trufflesuite/ganache-cli
+    command: ["ganache-cli", "-m", "actual surround disorder swim upgrade devote digital misery truly verb slide final"]
+    ports:
+      - 8545:8545
+
+  master:
+    image: rpcproxy_eeim:latest
+    command: ["/wait-for-it.sh", "ganache:8545", "--", "node", "data/master.js"]
+    depends_on:
+      - ganache
+    environment:
+      JSONRPC:  'http://ganache:8545'
+      PORT:     8545
+      MNEMONIC: '0x564a9db84969c8159f7aa3d5393c5ecd014fce6a375842a45b12af6677b12407'
+    volumes:
+      - ./scripts/:/app/data/
+
+  relayer:
+    image: rpcproxy_eeim:latest
+    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/relayer.js"]
+    depends_on:
+      - master
+    environment:
+      JSONRPC:  'http://master:8545'
+      PORT:     8545
+    volumes:
+      - ./scripts/:/app/data/
+
+  manager:
+    image: rpcproxy_eeim:latest
+    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/manager.js"]
+    depends_on:
+      - master
+    environment:
+      JSONRPC: 'http://master:8545'
+      PORT:    8000
+      FACTORY: '0x9412Ae211FB8AB408e35e648cFb4674b6BF0950B'
+    volumes:
+      - ./scripts/:/app/data/
+
+  user:
+    image: rpcproxy_eeim:latest
+    command: ["/wait-for-it.sh", "relayer:8545", "--", "/wait-for-it.sh", "manager:8000", "--", "node", "data/user.js"]
+    depends_on:
+      - relayer
+      - manager
+    environment:
+      JSONRPC: 'http://relayer:8545'
+      PORT:    8545
+      MANAGER: 'http://manager:8000'
+    volumes:
+      - ./scripts/:/app/data/
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile/Test
+    command: ["/wait-for-it.sh", "user:8545", "--", "bash", "/data/test.sh"]
+    depends_on:
+      - user
+    environment:
+      ENDPOINT: 'user:8545'
+    volumes:
+      - ./scripts/:/data/

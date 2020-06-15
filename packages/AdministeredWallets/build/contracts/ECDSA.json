@@ -3141,7 +3141,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-14T17:25:30.291Z",
+  "updatedAt": "2020-06-15T15:30:37.504Z",
   "devdoc": {
     "details": "Elliptic Curve Digital Signature Algorithm (ECDSA) operations. These functions can be used to verify that a message was signed by the holder of the private keys of a given address.",
     "methods": {}

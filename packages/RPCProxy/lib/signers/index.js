@@ -1,7 +1,8 @@
 'use strict'
 
 module.exports = {
-	eoa:             require('./eoa'),
-	nfwallet:        require('./nfwallet'),
-	simpleforwarder: require('./simpleforwarder'),
+	eoa:                 require('./eoa'),
+	jsonrpc:             require('./jsonrpc'),
+	administeredwallets: require('./administeredwallets'),
+	simpleforwarder:     require('./simpleforwarder'),
 }

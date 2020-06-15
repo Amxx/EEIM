@@ -4,6 +4,6 @@ const { wrapper } = require('../wrapper')
 
 module.exports = (signer) => wrapper(
 	'eth_accounts',
-	() => new Promise((resolve, reject) => resolve([ signer.address ])),
+	() => new Promise((resolve, reject) => signer.getAddress().then(address => resolve([ address ])).catch(reject)),
 	[]
 )

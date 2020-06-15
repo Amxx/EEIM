@@ -17,7 +17,7 @@ module.exports =
 	{
 		docker:
 		{
-			host:       "iexec-geth-local",
+			host:       "ganache",
 			port:       8545,
 			network_id: "*",        // Match any network id,
 			gasPrice:   8000000000, // 8 Gwei

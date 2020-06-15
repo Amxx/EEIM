@@ -8,7 +8,7 @@ module.exports = (signer) => wrapper(
 	(params) => signer.signTypedData(params[1]),
 	[
 		{
-			check:   (addr) => addr.toLowerCase() === signer.address.toLowerCase(),
+			check:   async (addr) => addr.toLowerCase() === (await signer.getAddress()).toLowerCase(),
 			message: 'Cannot sign message: invalid account',
 		},
 		null, // TODO

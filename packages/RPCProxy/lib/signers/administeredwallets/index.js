@@ -1,9 +1,9 @@
 'use strict'
 
-const { ethers } = require('ethers')
-const NFWALLET   = require('@eeim/administered-wallets/build/contracts/AdministeredWallet.json')
+const { ethers }         = require('ethers')
+const ADMINISTEREDWALLET = require('@eeim/administered-wallets/build/contracts/AdministeredWallet.json')
 
-class NFWalletSigner extends ethers.Signer
+class AdministeredWalletSigner extends ethers.Signer
 {
 	// provider: types.Provider
 	// _owner:   types.wallet
@@ -13,9 +13,8 @@ class NFWalletSigner extends ethers.Signer
 	{
 		super()
 		this.provider = owner.provider
-		this.address  = proxy // resolve ?
 		this._owner   = owner
-		this._proxy   = new ethers.Contract(proxy, NFWALLET.abi, owner)
+		this._proxy   = new ethers.Contract(proxy, ADMINISTEREDWALLET.abi, owner)
 	}
 
 	async connect()
@@ -26,7 +25,7 @@ class NFWalletSigner extends ethers.Signer
 
 	getAddress()
 	{
-		return new Promise((resolve, reject) => resolve(this._proxy.address))
+		return this._proxy.resolvedAddress
 	}
 
 	signMessage(message)
@@ -49,4 +48,4 @@ class NFWalletSigner extends ethers.Signer
 	}
 }
 
-module.exports = NFWalletSigner
+module.exports = AdministeredWalletSigner

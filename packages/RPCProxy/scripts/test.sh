@@ -11,7 +11,7 @@ function test()
 	run $1 $2 | jqn 'pick(["result","error"])'
 }
 
-ENDPOINT='127.0.0.1:8546'
+ENDPOINT="${ENDPOINT:-127.0.0.1:8545}"
 ACCOUNT=`run eth_accounts [] | jq -r '.result[0]'`
 
 test \

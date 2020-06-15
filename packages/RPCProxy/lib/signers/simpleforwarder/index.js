@@ -9,20 +9,19 @@ class SimpleForwarder extends ethers.Signer
 	// _signer:  types.wallet
 	// _relayer: types.wallet
 
-	constructor(signer, relayer, forwarder = null)
+	constructor(signer, relayer, options = {})
 	{
 		super()
-		this.provider   = relayer.provider
-		this.address    = signer.address
-		this._signer    = signer
-		this._relayer   = relayer
-		this._forwarder = { address: forwarder }
+		this.provider = relayer.provider
+		this._signer  = signer
+		this._relayer = relayer
+		this._options = options
 	}
 
 	async connect()
 	{
 		this._forwarder = new ethers.Contract(
-			this._forwarder.address || FORWARDER.networks[await this.provider.send('eth_chainId')].address,
+			this._options.forwarder || FORWARDER.networks[await this.provider.send('eth_chainId')].address,
 			FORWARDER.abi,
 			this._relayer
 		)
@@ -31,7 +30,7 @@ class SimpleForwarder extends ethers.Signer
 
 	getAddress()
 	{
-		return new Promise((resolve, reject) => resolve(this.address))
+		return this._signer.getAddress()
 	}
 
 	signMessage(message)
@@ -69,20 +68,24 @@ class SimpleForwarder extends ethers.Signer
 	_prepare(tx)
 	{
 		return new Promise((resolve, reject) => {
-			Promise.all([
-				tx.to,
-				tx.data,
-				this._forwarder.nonces(this.address),
-				this._forwarder.chainId(),
-				this._forwarder.resolvedAddress,
-			])
-			.then(([ to, data, nonce, chainId, forwarder ]) => resolve({
+			this._signer.getAddress()
+			.then(address =>
+				Promise.all([
+					tx.to,
+					tx.data,
+					this._forwarder.nonces(address),
+					this._forwarder.chainId(),
+					this._forwarder.resolvedAddress,
+				])
+				.then(([ to, data, nonce, chainId, forwarder ]) => resolve({
 					to:        to,
 					data:      data || "0x",
 					nonce:     nonce,
 					chainId:   chainId,
 					forwarder: forwarder,
-			}))
+				}))
+				.catch(reject)
+			)
 			.catch(reject)
 		})
 	}

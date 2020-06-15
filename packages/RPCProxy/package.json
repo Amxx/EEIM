@@ -1,6 +1,6 @@
 {
   "name": "@eeim/rpcproxy",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "homepage": "https://github.com/Amxx/EEIM#readme",
@@ -21,7 +21,7 @@
     "start": "node daemon.js"
   },
   "dependencies": {
-    "@eeim/administered-wallets": "file:../AdministeredWallets",
+    "@eeim/administered-wallets": "0.0.1-alpha.1",
     "eth-sig-util": "^2.5.3",
     "ethers": "^5.0.2",
     "express": "^4.17.1"

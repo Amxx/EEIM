@@ -1,0 +1,9 @@
+from node:11-alpine
+
+# environment
+RUN apk update && apk add bash curl jq
+RUN npm i -g jq.node
+
+# wait-for-it.sh
+RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh

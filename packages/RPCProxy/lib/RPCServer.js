@@ -46,7 +46,7 @@ class RPCServer
 					break
 			}
 		})
-		console.info(`Using signer for address ${signer.address}`)
+		signer.getAddress().then(address => console.info(`Using signer for address ${address}`))
 	}
 
 	start(port = 8545)

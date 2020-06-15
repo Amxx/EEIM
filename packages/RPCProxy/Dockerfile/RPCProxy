@@ -1,0 +1,19 @@
+from node:11
+
+# Create app directory
+WORKDIR /app
+
+# Missing dependency
+#RUN apk add --update git python
+
+# wait-for-it.sh
+RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
+#RUN npm ci --only=production
+
+# Bundle app source
+COPY . .
