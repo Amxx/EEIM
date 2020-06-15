@@ -13,8 +13,8 @@ services:
       - 8545:8545
 
   master:
-    image: rpcproxy_eeim:latest
-    command: ["/wait-for-it.sh", "ganache:8545", "--", "node", "data/master.js"]
+    image: modules_eeim:latest
+    command: ["/wait-for-it.sh", "ganache:8545", "--", "node", "data/001-master.js"]
     depends_on:
       - ganache
     environment:
@@ -25,8 +25,8 @@ services:
       - ./scripts/:/app/data/
 
   relayer:
-    image: rpcproxy_eeim:latest
-    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/relayer.js"]
+    image: modules_eeim:latest
+    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/002-relayer.js"]
     depends_on:
       - master
     environment:
@@ -36,8 +36,8 @@ services:
       - ./scripts/:/app/data/
 
   manager:
-    image: rpcproxy_eeim:latest
-    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/manager.js"]
+    image: modules_eeim:latest
+    command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/003-manager.js"]
     depends_on:
       - master
     environment:
@@ -48,8 +48,8 @@ services:
       - ./scripts/:/app/data/
 
   user:
-    image: rpcproxy_eeim:latest
-    command: ["/wait-for-it.sh", "relayer:8545", "--", "/wait-for-it.sh", "manager:8000", "--", "node", "data/user.js"]
+    image: modules_eeim:latest
+    command: ["/wait-for-it.sh", "relayer:8545", "--", "/wait-for-it.sh", "manager:8000", "--", "node", "data/100-user.js"]
     depends_on:
       - relayer
       - manager

@@ -1,13 +1,14 @@
 {
-  "name": "@eeim/rpcproxy",
-  "version": "0.0.1-alpha.2",
+  "name": "@eeim/modules",
+  "version": "0.0.1-alpha.1",
   "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "homepage": "https://github.com/Amxx/EEIM#readme",
   "license": "MIT",
   "main": "daemon.js",
   "files": [
-    "/lib"
+    "/lib",
+    "/daemon.js"
   ],
   "repository": {
     "type": "git",
@@ -17,9 +18,6 @@
     "url": "https://github.com/Amxx/EEIM/issues"
   },
   "dependencies": {
-    "@eeim/administered-wallets": "0.0.1-alpha.1",
-    "eth-sig-util": "^2.5.3",
-    "ethers": "^5.0.2",
-    "express": "^4.17.1"
+    "@eeim/rpcproxy": "0.0.1-alpha.2"
   }
 }
