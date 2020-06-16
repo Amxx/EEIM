@@ -16,7 +16,7 @@ class AdministeredWalletSigner extends ethers.Signer
 
 	getAddress()
 	{
-		return this.address
+		return new Promise((resolve, reject) => resolve(this.address));
 	}
 
 	signMessage(message)
