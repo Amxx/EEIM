@@ -38,8 +38,8 @@ class AdministeredWalletSigner extends ethers.Signer
 					'forward(address,uint256,bytes)',
 					[
 							tx.to,
-							tx.value,
-							tx.data,
+							tx.value || 0,
+							tx.data  || "0x",
 					],
 					{
 						gasPrice: tx.gasPrice,
