@@ -5,51 +5,51 @@ const ADMINISTEREDWALLET = require('@eeim/administered-wallets/build/contracts/A
 
 class AdministeredWalletSigner extends ethers.Signer
 {
-	// provider: types.Provider
-	// _owner:   types.wallet
-	// _proxy:   types.contract
-
-	constructor(proxy, owner)
+	constructor(address, signer)
 	{
 		super()
-		this.provider = owner.provider
-		this._owner   = owner
-		this._proxy   = new ethers.Contract(proxy, ADMINISTEREDWALLET.abi, owner)
-	}
-
-	async ready()
-	{
-		await this._owner.ready();
-		return this;
+		this.provider   = owner.provider
+		this.address    = address
+		this.interface  = new ethers.utils.interface(ADMINISTEREDWALLET.abi)
+		this.signer     = signer
 	}
 
 	getAddress()
 	{
-		return this._proxy.resolvedAddress
+		return this.address
 	}
 
 	signMessage(message)
 	{
-		return this._owner.signMessage(message)
+		return this.signer.signMessage(message)
 	}
 
 	signTypedData(data)
 	{
-		return this._owner.signTypedData(data)
+		return this.signer.signTypedData(data)
 	}
 
 	signTransaction(tx)
 	{
-		return new Promise((resolve, reject) => reject('signTransaction not implemented in AdministeredWalletSigner'))
-	}
 
-	sendTransaction(tx)
-	{
-		return this._proxy.forward(
-			tx.to,
-			tx.value || 0,
-			tx.data  || "0x",
-		)
+		return new Promise((resolve, reject) => {
+			this.signer.signTransaction({
+				to: this.address,
+				data: this.interface.encodeFunctionData(
+					'forward(address,uint256,bytes)',
+					[
+							tx.to,
+							tx.value,
+							tx.data,
+					],
+					{
+						gasPrice: tx.gasPrice,
+					}
+				),
+			})
+			.then(resolve)
+			.catch(reject)
+		})
 	}
 }
 

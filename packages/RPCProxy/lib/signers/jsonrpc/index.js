@@ -9,22 +9,16 @@ class JsonRpcSigner extends ethers.Signer
 	{
 		super()
 		this.provider = provider
-		this._signer  = provider.getSigner()
-	}
-
-	async ready()
-	{
-		return this;
 	}
 
 	getAddress()
 	{
-		return this._signer.getAddress()
+		return this.provider.getSigner().getAddress()
 	}
 
 	signMessage(message)
 	{
-		return this._signer.signMessage(message)
+		return this.provider.getSigner().signMessage(message)
 	}
 
 	signTypedData(data)
@@ -42,12 +36,12 @@ class JsonRpcSigner extends ethers.Signer
 
 	signTransaction(tx)
 	{
-		return this._signer.signTransaction(tx)
+		return this.provider.getSigner().signTransaction(tx)
 	}
 
 	sendTransaction(tx)
 	{
-		return this._signer.sendTransaction(tx)
+		return this.provider.getSigner().sendTransaction(tx)
 	}
 }
 

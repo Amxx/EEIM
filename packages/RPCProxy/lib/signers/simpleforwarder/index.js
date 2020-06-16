@@ -5,62 +5,53 @@ const FORWARDER  = require('@eeim/administered-wallets/build/contracts/SimpleFor
 
 class SimpleForwarderSigner extends ethers.Signer
 {
-	// provider: types.Provider
-	// _signer:  types.wallet
-	// _relayer: types.wallet
-
-	constructor(signer, relayer, options = {})
+	constructor(signer, relayer, forwarder)
 	{
 		super()
-		this.provider = relayer.provider
-		this._signer  = signer
-		this._relayer = relayer
-		this._options = options
-	}
-
-	async ready()
-	{
-		this._forwarder = new ethers.Contract(
-			this._options.forwarder || FORWARDER.networks[await this.provider.send('eth_chainId')].address,
-			FORWARDER.abi,
-			this._relayer
-		)
-		return this;
+		this.provider  = relayer.provider
+		this.forwarder = forwarder
+		this.interface = new ethers.utils.Interface(FORWARDER.abi)
+		this.signer    = signer
+		this.relayer   = relayer
 	}
 
 	getAddress()
 	{
-		return this._signer.getAddress()
+		return this.signer.getAddress()
 	}
 
 	signMessage(message)
 	{
-		return this._signer.signMessage(message)
+		return this.signer.signMessage(message)
 	}
 
 	signTypedData(data)
 	{
-		return this._signer.signTypedData(data)
+		return this.signer.signTypedData(data)
 	}
 
 	signTransaction(tx)
-	{
-		return new Promise((resolve, reject) => reject('signTransaction not implemented in SimpleForwarderSigner'))
-	}
-
-	sendTransaction(tx)
 	{
 		return new Promise((resolve, reject) => {
 			this._prepare(tx)
 			.then(metatx => {
 				this.signMessage(ethers.utils.arrayify(this._hash(metatx)))
 				.then(signature => {
-					this._forwarder.verifyAndRelay(
-						metatx.to,
-						metatx.data,
-						metatx.nonce,
-						signature,
-					)
+					this.relayer.signTransaction({
+						to: this.forwarder,
+						data: this.interface.encodeFunctionData(
+							'verify(address,bytes,uint256,bytes)',
+							[
+									metatx.to,
+									metatx.data,
+									metatx.nonce,
+									signature,
+							],
+							{
+								gasPrice: tx.gasPrice,
+							}
+						),
+					})
 					.then(resolve)
 					.catch(reject)
 				})
@@ -73,14 +64,15 @@ class SimpleForwarderSigner extends ethers.Signer
 	_prepare(tx)
 	{
 		return new Promise((resolve, reject) => {
-			this._signer.getAddress()
-			.then(address =>
+			this.signer.getAddress()
+			.then(address => {
+				const contract = new ethers.Contract(this.forwarder, this.interface, this.provider);
 				Promise.all([
 					tx.to,
 					tx.data,
-					this._forwarder.nonces(address),
-					this._forwarder.chainId(),
-					this._forwarder.resolvedAddress,
+					contract.nonces(address),
+					contract.chainId(),
+					contract.resolvedAddress,
 				])
 				.then(([ to, data, nonce, chainId, forwarder ]) => resolve({
 					to:        to,
@@ -90,7 +82,7 @@ class SimpleForwarderSigner extends ethers.Signer
 					forwarder: forwarder,
 				}))
 				.catch(reject)
-			)
+			})
 			.catch(reject)
 		})
 	}
