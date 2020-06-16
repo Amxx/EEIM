@@ -12,7 +12,7 @@ class JsonRpcSigner extends ethers.Signer
 		this._signer  = provider.getSigner()
 	}
 
-	async connect()
+	async ready()
 	{
 		return this;
 	}

@@ -17,9 +17,9 @@ class AdministeredWalletSigner extends ethers.Signer
 		this._proxy   = new ethers.Contract(proxy, ADMINISTEREDWALLET.abi, owner)
 	}
 
-	async connect()
+	async ready()
 	{
-		await this._owner.connect();
+		await this._owner.ready();
 		return this;
 	}
 

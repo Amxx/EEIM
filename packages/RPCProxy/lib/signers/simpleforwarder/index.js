@@ -18,7 +18,7 @@ class SimpleForwarderSigner extends ethers.Signer
 		this._options = options
 	}
 
-	async connect()
+	async ready()
 	{
 		this._forwarder = new ethers.Contract(
 			this._options.forwarder || FORWARDER.networks[await this.provider.send('eth_chainId')].address,

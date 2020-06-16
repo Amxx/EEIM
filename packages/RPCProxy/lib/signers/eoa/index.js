@@ -10,7 +10,7 @@ class EOASigner extends ethers.Wallet
 		super(...args)
 	}
 
-	async connect()
+	async ready()
 	{
 		return this;
 	}
