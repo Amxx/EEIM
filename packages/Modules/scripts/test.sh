@@ -37,3 +37,7 @@ test \
 test \
 	"eth_sendTransaction" \
 	"[{\"from\":\"$ACCOUNT\",\"to\":\"0xF037353a9B47f453d89E9163F21a2f6e1000B07d\",\"value\":\"0x0\"}]"
+
+test \
+	"eth_signTransaction" \
+	"[{\"from\":\"$ACCOUNT\",\"to\":\"0xF037353a9B47f453d89E9163F21a2f6e1000B07d\",\"value\":\"0x0\"}]"

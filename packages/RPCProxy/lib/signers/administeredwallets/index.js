@@ -38,6 +38,11 @@ class AdministeredWalletSigner extends ethers.Signer
 		return this._owner.signTypedData(data)
 	}
 
+	signTransaction(tx)
+	{
+		return new Promise((resolve, reject) => reject('signTransaction not implemented in AdministeredWalletSigner'))
+	}
+
 	sendTransaction(tx)
 	{
 		return this._proxy.forward(

@@ -40,6 +40,11 @@ class JsonRpcSigner extends ethers.Signer
 		})
 	}
 
+	signTransaction(tx)
+	{
+		return this._signer.signTransaction(tx)
+	}
+
 	sendTransaction(tx)
 	{
 		return this._signer.sendTransaction(tx)

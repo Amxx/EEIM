@@ -33,6 +33,12 @@ class RPCServer
 					.catch(failure(req,res))
 					break
 
+				case 'eth_signTransaction':
+					rpc.signTransaction(signer)(req.body.params)
+					.then(success(req,res))
+					.catch(failure(req,res))
+					break
+
 				case 'eth_sendTransaction':
 					rpc.sendTransaction(signer)(req.body.params)
 					.then(success(req,res))

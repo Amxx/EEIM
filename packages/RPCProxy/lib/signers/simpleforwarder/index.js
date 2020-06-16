@@ -3,7 +3,7 @@
 const { ethers } = require('ethers')
 const FORWARDER  = require('@eeim/administered-wallets/build/contracts/SimpleForwarder.json')
 
-class SimpleForwarder extends ethers.Signer
+class SimpleForwarderSigner extends ethers.Signer
 {
 	// provider: types.Provider
 	// _signer:  types.wallet
@@ -41,6 +41,11 @@ class SimpleForwarder extends ethers.Signer
 	signTypedData(data)
 	{
 		return this._signer.signTypedData(data)
+	}
+
+	signTransaction(tx)
+	{
+		return new Promise((resolve, reject) => reject('signTransaction not implemented in SimpleForwarderSigner'))
 	}
 
 	sendTransaction(tx)
@@ -108,4 +113,4 @@ class SimpleForwarder extends ethers.Signer
 	}
 }
 
-module.exports = SimpleForwarder
+module.exports = SimpleForwarderSigner
