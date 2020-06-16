@@ -36,7 +36,15 @@ class JsonRpcSigner extends ethers.Signer
 
 	signTransaction(tx)
 	{
-		return this.provider.getSigner().signTransaction(tx)
+		return new Promise((resolve, reject) => {
+			this.getAddress()
+			.then(address => {
+				this.provider.send('eth_signTransaction', [ tx ])
+				.then(resolve)
+				.catch(reject)
+			})
+			.catch(reject)
+		})
 	}
 
 	sendTransaction(tx)
