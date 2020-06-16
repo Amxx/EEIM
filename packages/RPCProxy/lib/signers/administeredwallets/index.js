@@ -10,7 +10,7 @@ class AdministeredWalletSigner extends ethers.Signer
 		super()
 		this.provider   = provider || signer.provider
 		this.address    = address
-		this.interface  = new ethers.utils.interface(ADMINISTEREDWALLET.abi)
+		this.interface  = new ethers.utils.Interface(ADMINISTEREDWALLET.abi)
 		this.signer     = signer
 	}
 
