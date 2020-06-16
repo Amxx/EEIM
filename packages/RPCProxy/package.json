@@ -1,6 +1,6 @@
 {
   "name": "@eeim/rpcproxy",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "A Ethereum JsonRPC proxy with modular signature & relaying",
   "author": "Hadrien Croubois <hadrien.croubois@gmail.com>",
   "homepage": "https://github.com/Amxx/EEIM#readme",
