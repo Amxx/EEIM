@@ -5,10 +5,10 @@ const FORWARDER  = require('@eeim/administered-wallets/build/contracts/SimpleFor
 
 class SimpleForwarderSigner extends ethers.Signer
 {
-	constructor(signer, relayer, forwarder)
+	constructor(signer, relayer, forwarder, provider = null)
 	{
 		super()
-		this.provider  = relayer.provider
+		this.provider  = provider || relayer.provider
 		this.forwarder = forwarder
 		this.interface = new ethers.utils.Interface(FORWARDER.abi)
 		this.signer    = signer

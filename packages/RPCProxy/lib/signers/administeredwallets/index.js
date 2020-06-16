@@ -5,10 +5,10 @@ const ADMINISTEREDWALLET = require('@eeim/administered-wallets/build/contracts/A
 
 class AdministeredWalletSigner extends ethers.Signer
 {
-	constructor(address, signer)
+	constructor(address, signer, provider = null)
 	{
 		super()
-		this.provider   = owner.provider
+		this.provider   = provider || signer.provider
 		this.address    = address
 		this.interface  = new ethers.utils.interface(ADMINISTEREDWALLET.abi)
 		this.signer     = signer
@@ -31,7 +31,6 @@ class AdministeredWalletSigner extends ethers.Signer
 
 	signTransaction(tx)
 	{
-
 		return new Promise((resolve, reject) => {
 			this.signer.signTransaction({
 				to: this.address,
