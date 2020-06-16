@@ -6,7 +6,7 @@ const { success, failure } = require('@eeim/rpcproxy/lib/utils/format');
 const FACTORY              = require('@eeim/administered-wallets/build/contracts/AdministeredWalletFactory.json');
 
 const signer    = new ethers.providers.JsonRpcProvider(process.env.JSONRPC).getSigner();
-const factory   = new ethers.Contract('0x9412Ae211FB8AB408e35e648cFb4674b6BF0950B', FACTORY.abi, signer);
+const factory   = new ethers.Contract(process.env.FACTORY, FACTORY.abi, signer);
 
 const app = express();
 

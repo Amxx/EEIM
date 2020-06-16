@@ -16,12 +16,6 @@ class FilterSigner extends ethers.Signer
 		this._filters = filters
 	}
 
-	async connect()
-	{
-		await this._signer.connect();
-		return this;
-	}
-
 	getAddress()
 	{
 		return this._signer.getAddress()
@@ -73,6 +67,29 @@ class FilterSigner extends ethers.Signer
 		})
 	}
 
+	signTransaction(tx)
+	{
+		return new Promise(async (resolve, reject) => {
+			try
+			{
+				if (!this._filters.signTransaction || await this._filters.signTransaction(tx))
+				{
+					this._signer.signTransaction(tx)
+					.then(resolve)
+					.catch(reject)
+				}
+				else
+				{
+					reject('unauthorized operation')
+				}
+			}
+			catch (error)
+			{
+				reject(error)
+			}
+		})
+	}
+
 	sendTransaction(tx)
 	{
 		return new Promise(async (resolve, reject) => {
@@ -98,31 +115,29 @@ class FilterSigner extends ethers.Signer
 }
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.JSONRPC);
-const signer   = new FilterSigner(
-	new signers.jsonrpc(provider),
-	{
-		signMessage:     async () => false,
-		signTypedData:   async () => false,
-		sendTransaction: (tx) => new Promise((resolve, reject) => {
-			try
-			{
-				const factory   = new ethers.Contract('0x9412Ae211FB8AB408e35e648cFb4674b6BF0950B', FACTORY.abi, provider);
-				const forwarder = new ethers.utils.Interface(FORWARDER.abi);
-				const params    = forwarder.decodeFunctionData('verifyAndRelay(address,bytes,uint256,bytes)', tx.data);
 
-				console.log(1)
-				factory.ownerOf(params.to)
-				.then(owner => resolve(owner !== ethers.constants.AddressZero))
-				.catch(reject);
-			}
-			catch(error)
-			{
-				reject(error);
-			}
-		})
-	}
-);
+(new rpcserver(
+	new FilterSigner(
+		new signers.jsonrpc(provider),
+		{
+			signMessage:     async () => false,
+			signTypedData:   async () => false,
+			sendTransaction: (tx) => new Promise((resolve, reject) => {
+				try
+				{
+					const factory   = new ethers.Contract('0x9412Ae211FB8AB408e35e648cFb4674b6BF0950B', FACTORY.abi, provider);
+					const forwarder = new ethers.utils.Interface(FORWARDER.abi);
+					const params    = forwarder.decodeFunctionData('verifyAndRelay(address,bytes,uint256,bytes)', tx.data);
 
-signer.connect().then(ready => {
-	(new rpcserver(ready)).start(process.env.PORT || 8545)
-});
+					factory.ownerOf(params.to)
+					.then(owner => resolve(owner !== ethers.constants.AddressZero))
+					.catch(reject);
+				}
+				catch(error)
+				{
+					reject(error);
+				}
+			})
+		}
+	)
+)).start(process.env.PORT || 8545);

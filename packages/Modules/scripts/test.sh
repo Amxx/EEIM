@@ -12,7 +12,6 @@ function test()
 }
 
 ENDPOINT="${ENDPOINT:-127.0.0.1:8545}"
-ACCOUNT=`run eth_accounts [] | jq -r '.result[0]'`
 
 test \
 	"eth_chainId" \
@@ -25,6 +24,8 @@ test \
 test \
 	"eth_accounts" \
 	"[]"
+
+ACCOUNT=`run eth_accounts [] | jq -r '.result[0]'`
 
 test \
 	"eth_sign" \
@@ -41,3 +42,9 @@ test \
 test \
 	"eth_signTransaction" \
 	"[{\"from\":\"$ACCOUNT\",\"to\":\"0xF037353a9B47f453d89E9163F21a2f6e1000B07d\",\"value\":\"0x0\"}]"
+
+TX=`run eth_signTransaction "[{\"from\":\"$ACCOUNT\",\"to\":\"0xF037353a9B47f453d89E9163F21a2f6e1000B07d\",\"value\":\"0x0\"}]" | jq -r '.result'`
+
+test \
+	"eth_sendRawTransaction" \
+	"[\"$TX\"]"

@@ -4,9 +4,9 @@ const { ethers } = require('ethers');
 const rpcserver  = require('@eeim/rpcproxy/lib/RPCServer');
 const signers    = require('@eeim/rpcproxy/lib/signers');
 
-const provider = new ethers.providers.JsonRpcProvider(process.env.JSONRPC);
-const signer   = new signers.eoa(process.env.MNEMONIC, provider);
-
-signer.connect().then(ready => {
-	(new rpcserver(ready)).start(process.env.PORT || 8545)
-});
+(new rpcserver(
+	new signers.eoa(
+		process.env.MNEMONIC,
+		new ethers.providers.JsonRpcProvider(process.env.JSONRPC),
+	)
+)).start(process.env.PORT || 8545);
