@@ -1,8 +1,9 @@
 'use strict'
 
-const { wrapper } = require('../wrapper')
+import { Signer } from '../interfaces';
+import wrapper from '../wrapper';
 
-module.exports = (signer) => wrapper(
+export default (signer: Signer ) => wrapper(
 	'eth_accounts',
 	() => new Promise((resolve, reject) => signer.getAddress().then(address => resolve([ address ])).catch(reject)),
 	[]

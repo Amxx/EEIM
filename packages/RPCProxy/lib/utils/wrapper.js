@@ -1,12 +1,15 @@
 'use strict'
 
-exports.wrapper = (name, method, args = []) => (params = []) => new Promise(async (resolve, reject) => {
+type param     = any;
+type paramdesc = any;
+
+export default (name: string, method: string, args: Array<paramdesc> = []) => (params: Array<param> = []) => new Promise(async (resolve, reject) => {
 	try
 	{
 		if (params.length != args.length)
 		{
-			reject({ message: `Incorrect number of arguments. Method '${name}' requires exactly ${args.length} arguments. Request specified ${params.length} arguments: ${JSON.stringify(params)}.` })
-			return
+			reject({ message: `Incorrect number of arguments. Method '${name}' requires exactly ${args.length} arguments. Request specified ${params.length} arguments: ${JSON.stringify(params)}.` });
+			return;
 		}
 		// TODO
 		// args.forEach(async (restrictions, position) => {
@@ -16,10 +19,10 @@ exports.wrapper = (name, method, args = []) => (params = []) => new Promise(asyn
 		// 		return
 		// 	}
 		// })
-		method(params).then(resolve).catch(reject)
+		method(params).then(resolve).catch(reject);
 	}
 	catch (message)
 	{
-		reject({ message })
+		reject({ message });
 	}
-})
+});

@@ -1,9 +1,9 @@
 'use strict'
 
-const { ethers }  = require('ethers')
-const { wrapper } = require('../wrapper')
+import { Signer } from '../interfaces';
+const { wrapper } = require('../wrapper');
 
-module.exports = (signer) => wrapper(
+export default (signer: Signer) => wrapper(
 	'eth_sendTransaction',
 	(params) => new Promise((resolve, reject) => {
 		signer.sendTransaction({
@@ -19,7 +19,7 @@ module.exports = (signer) => wrapper(
 	}),
 	[
 		{
-			check:   (tx) => !tx.from || tx.from.toLowerCase() === signer.address.toLowerCase(),
+			check:   async (tx) => !tx.from || tx.from.toLowerCase() === (await signer.getAddress()).toLowerCase(),
 			message: 'Cannot send transaction: invalid account',
 		}
 	]
