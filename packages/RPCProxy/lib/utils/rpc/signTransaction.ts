@@ -1,24 +1,12 @@
 'use strict'
 
-import { BigNumberish } from '@ethersproject/bignumber';
-import { BytesLike    } from '@ethersproject/bytes';
-import { Signer       } from '../interfaces';
-import wrapper          from '../wrapper';
-
-type txRequest = {
-	to?:       string,
-	from?:     string,
-	nonce?:    BigNumberish,
-	gas?:      BigNumberish,
-	gasPrice?: BigNumberish,
-	data?:     BytesLike,
-	value?:    BigNumberish,
-	chainId?:  number,
-}
+import { TxRequest } from './_types';
+import { Signer    } from '../interfaces';
+import wrapper       from '../wrapper';
 
 export default (signer: Signer) => wrapper(
 	'eth_signTransaction',
-	(params: Array<txRequest>) => new Promise((resolve, reject) => {
+	(params: Array<TxRequest>) => new Promise((resolve, reject) => {
 		signer.populateTransaction({
 			to:       params[0].to,
 			from:     params[0].from,
@@ -34,7 +22,7 @@ export default (signer: Signer) => wrapper(
 	}),
 	[
 		{
-			check:   async (tx: txRequest) => !tx.from || tx.from.toLowerCase() === (await signer.getAddress()).toLowerCase(),
+			check:   async (tx: TxRequest) => !tx.from || tx.from.toLowerCase() === (await signer.getAddress()).toLowerCase(),
 			message: 'Cannot sign transaction: invalid account',
 		}
 	]
