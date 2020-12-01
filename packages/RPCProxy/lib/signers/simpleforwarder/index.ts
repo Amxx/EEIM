@@ -37,7 +37,7 @@ export default class SimpleForwarderSigner extends Signer implements TypedDataSi
 	}
 
 	connect(provider: Provider): SimpleForwarderSigner {
-		return new SimpleForwarderSigner(this.signer, this.relayer, this.forwarder, provider);
+		return new SimpleForwarderSigner(this.signer, this.relayer.connect(provider), this.forwarder, provider);
 	}
 
 	getAddress() : Promise<string>

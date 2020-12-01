@@ -1,7 +1,7 @@
 'use strict'
 
 import { Signer } from '../interfaces';
-import wrapper from '../wrapper';
+import wrapper    from '../wrapper';
 
 export default (signer: Signer ) => wrapper(
 	'eth_accounts',

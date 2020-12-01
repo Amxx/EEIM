@@ -17,6 +17,8 @@ services:
     command: ["/wait-for-it.sh", "ganache:8545", "--", "node", "data/001-master.js"]
     depends_on:
       - ganache
+    ports:
+      - 9545:8545
     environment:
       JSONRPC:  'http://ganache:8545'
       PORT:     8545
@@ -29,6 +31,8 @@ services:
     command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/002-relayer.js"]
     depends_on:
       - master
+    ports:
+      - 9546:8545
     environment:
       JSONRPC:  'http://master:8545'
       PORT:     8545
@@ -40,6 +44,8 @@ services:
     command: ["/wait-for-it.sh", "master:8545", "--", "node", "data/003-manager.js"]
     depends_on:
       - master
+    ports:
+      - 9547:8545
     environment:
       JSONRPC: 'http://master:8545'
       PORT:    8000
@@ -53,6 +59,8 @@ services:
     depends_on:
       - relayer
       - manager
+    ports:
+      - 9555:8545
     environment:
       JSONRPC: 'http://relayer:8545'
       PORT:    8545

@@ -24,7 +24,7 @@ export default class AdministeredWalletSigner extends Signer implements TypedDat
 	}
 
 	connect(provider: Provider): AdministeredWalletSigner {
-		return new AdministeredWalletSigner(this.address, this.signer, provider);
+		return new AdministeredWalletSigner(this.address, this.signer.connect(provider), provider);
 	}
 
 	getAddress() : Promise<string>

@@ -18,8 +18,7 @@
   ],
   "scripts": {
     "build": "tsc --build tsconfig.json",
-    "start": "node dist/main.js",
-    "trigger": "node dist/trigger.js",
+    "start": "node dist/test.js",
     "clean": "rm -rf dist",
     "lint": "eslint lib --ext .js,.ts"
   },

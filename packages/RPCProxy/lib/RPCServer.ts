@@ -1,11 +1,10 @@
 'use strict'
 
 import express              from 'express';
-import { ethers }           from 'ethers';
+import { JsonRpcProvider  } from '@ethersproject/providers';
 import { success, failure } from './utils/format';
-import { SignerExtended }   from './utils/interfaces';
+import { SignerExtended   } from './utils/interfaces';
 import * as rpc             from './utils/rpc';
-import * as extrasigners    from './signers';
 
 export class RPCServer
 {
@@ -51,7 +50,7 @@ export class RPCServer
 					break
 
 				default:
-					(signer.provider as ethers.providers.JsonRpcProvider).send(req.body.method, req.body.params)
+					(signer.provider as JsonRpcProvider).send(req.body.method, req.body.params)
 					.then(success(req,res))
 					.catch(failure(req,res))
 					break
@@ -66,27 +65,3 @@ export class RPCServer
 		console.info(`RESTful API server started on: ${port}`)
 	}
 }
-
-(async () => {
-	/***************************************************************************
-	 *                                Provider                                 *
-	 ***************************************************************************/
-	const provider = new ethers.providers.JsonRpcProvider('http://localhost:8540');
-
-	/***************************************************************************
-	 *                              Wallet (EOA)                               *
-	 ***************************************************************************/
-	// const signer : SignerExtended = new ethers.Wallet(process.env.MNEMONIC2, provider);
-
-	/***************************************************************************
-	 *                             JSONRPC signer                              *
-	 ***************************************************************************/
-	const signer : SignerExtended = provider.getSigner();
-	signer._signTypedData = extrasigners.jsonrpc.prototype._signTypedData;
-
-	/***************************************************************************
-	 *                                RPCServer                                *
-	 ***************************************************************************/
-	(new RPCServer(signer)).start();
-
-})().catch(console.error)
